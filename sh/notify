@@ -1,0 +1,15 @@
+#!/bin/bash
+# Notification script for compilation of clojurescript.
+# Only notifies on failure.
+# Assumes presence of terminal-notifier program, but could pretty
+# easily add support for growl, etc
+
+# take a single arg, the message.
+message=$1
+
+# This is sort of lame, but check whether the message contains success, because
+# cljs output contains Success on, erm, success.
+if [[ $message != *"Success"* ]]
+then
+    terminal-notifier -message "${message}"
+fi
